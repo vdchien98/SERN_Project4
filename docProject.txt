@@ -1,0 +1,43 @@
+- Dự án này cần các công nghệ :
++ React
++ Nodejs/Express
++ REST API
++ MySql
++ SequelizeJS ( quản lý và thực hiện các truy vấn trong cơ sở dữ liệu )
+- Các bước thực hiện dự án :
+1. Tạo 2 phần client và server
+2. Khởi tạo server : 
+* npm init 
+* Cài những thư viện thiết yếu cho server(backend): express , cors ( cho phép tạo kết nối giữa giao diện người dùng trong phản ứng với máy chủ , ko cài sẽ gặp lỗi ), mysql2
+* Tạo file index.js : file chạy đầu tiền của backend 
++ 
+const express = require('express');
+const app = express();
+
+app.listen(3001, () => {
+    console.log('Hello your server is running on port 3001');
+});
+
++ Cài thêm nodemon sau đó cầu hình trong package : "start": "nodemon index.js"
+
+* Bắt đầu kết nối với database: 
++ sử dụng SequelizeJS (framwork sql nổi tiếng )để viết sql dễ dàng ---> cài đặt npm install sequelize sequelize-cli 
++ Khi cài xong chạy dòng lệnh npx sequelize-cli init ( để tạo ra kho chứa ) sẽ tạo ra các thư mục sau : 
+. config, chứa tệp cấu hình, cho CLI biết cách kết nối với cơ sở dữ liệu
+. models, chứa tất cả các mô hình cho dự án của bạn
+. migrations, chứa tất cả các tệp di chuyển
+. seeders, chứa tất cả các tệp hạt giống
++ Tạo file Posts.js trong models ( tạo 1 bảng là Posts.js trng database). Viết mã tạo bảng trong này 
++ Bắt đầu kết nối để tạo bảng : 
+. Tạo kết nối giữa sequelize vs cơ sở dữ liệu trong file config :  "development": {
+        "username": "root",
+        "password": null,
+        "database": "sern4",
+        "host": "localhost",
+        "port": 3307,
+        "dialect": "mysql"
+    },
+
+
+
+
