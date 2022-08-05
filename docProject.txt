@@ -41,4 +41,29 @@ app.listen(3001, () => {
 * Bắt đầu tạo các tuyến đường để viết Api 
 - Trong server : Tạo 1 folder là routes
 
+* Tạo kết nối với client từ backend :
+- chú ý : npx create-react-app . --> chỉ tạo luôn 1 ứng dụng react trong 1 ứng dụng mình đã có sẵn 
+- Dung thư viện axios để kết nối với api từ backend gửi đến 
+- cài sass , bootstrap ,....
+- sử dụng hook là useEffect
+- sẽ cài thư viện npm i react-router-dom để phân các router bên react . 
+Trong 'react-router-dom' cos những loại này (possible exports: BrowserRouter, HashRouter, Link, MemoryRouter, NavLink, Navigate, NavigationType, Outlet, Route, Router, Routes, UNSAFE_LocationContext, UNSAFE_NavigationContext, UNSAFE_RouteContext, createPath, createRoutesFromChildren, createSearchParams, generatePath, matchPath, matchRoutes, parsePath, renderMatches, resolvePath, unstable_HistoryRouter, useHref, useInRouterContext, useLinkClickHandler, useLocation, useMatch, useNavigate, useNavigationType, useOutlet, useOutletContext, useParams, useResolvedPath, useRoutes, 
+useSearchParams)
+- Tổ chức lại code theo các tuyến 
+- Tổ chức lại code và tách ra thành các commpont : Như compnent Home
+* thực hiện bên client 
+ - cài  npm install formik --save : Nó xác thực dữ liệu của mình dễ dàng hơn ví dụ như bạn muốn gửi form bạn muốn cho người dùng nếu họ quên một trường , nó sẽ tự động làm điều đó cho bạn , nó tự động đưa ra những lỗi .  (Một thư viện quản lý form có thế Getting values in and out of form state ; Validation and error messages( xác thực và thông báo lỗi) ;Handling form submission (xử lý form)) 
+https://youtu.be/oiNtnehlaTo
+- formik : < Hay>
+autocomplete="off" : đặt các dòng trong chế độ hoàn thành 
+initialValues : giá trị ban đầu 
+validate: xác thực 
+- Cài đặt npm install -S yup
+ + username: yup.string().min(3).max(255).required(), : ít nhân 3 ký tự và nhiều nhất 255 ký tự
++  
+
+
+
+
+
 
