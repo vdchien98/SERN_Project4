@@ -38,6 +38,7 @@ app.listen(3001, () => {
         "dialect": "mysql"
     },
 
-
+* Bắt đầu tạo các tuyến đường để viết Api 
+- Trong server : Tạo 1 folder là routes
 
 
