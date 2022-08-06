@@ -61,7 +61,13 @@ validate: xác thực
 - Cài đặt npm install -S yup
  + username: yup.string().min(3).max(255).required(), : ít nhân 3 ký tự và nhiều nhất 255 ký tự
 +  
--
+- Xây dựng tuyến đường mà click vào 1 blog sẽ dẫn đến đường link : /post/:id ==> 
+Sử dụng compnonet Post.js : sử dụng  useParams trong react-router-dom
+
+// useHistory trong  'react-router-dom' cho phép chúng tôi điều hướng và chuyển hướng đến các vị trị khác trong ứng dụng , muốn thay đổi tuyến đường hay hướng chỉ cần history.push("Link") trong đó let history = useHistory()
+++++ trong phiên bản mới của React thì dùng import {  useNavigate } from 'react-router-dom'thay thế cho useHistory ==> let navigate = useNavigate(); và cú pháp   navigate(`/post/${value.id}`) sẽ di đến trag cần tìm
+ 
+
 
 
 

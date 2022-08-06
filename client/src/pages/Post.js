@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import './Post.scss';
 function Post() {
-    let { id } = useParams();
+    let { id } = useParams(); // lấy cái id trong đường dẫn <Route path="/post/:id" exact element={<Post />} /> bên App
     const [postObject, setPostObject] = useState({});
     useEffect(() => {
         axios.get(`http://localhost:3001/posts/byId/${id}`).then((response) => {
