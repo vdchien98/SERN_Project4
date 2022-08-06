@@ -3,7 +3,11 @@ import axios from 'axios';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import '../pages/CreatePost.scss';
+import { useNavigate } from 'react-router-dom';
+
 function CreatePost() {
+    let navigate = useNavigate();
+
     const initialValues = {
         title: '',
         postText: '',
@@ -19,7 +23,8 @@ function CreatePost() {
         axios.post('http://localhost:3001/posts', data).then((response) => {
             // console.log(response.data);
             // setListOfPosts(response.data);
-            console.log('click thanh coong');
+            // console.log('click thanh coong');
+            navigate(`/`);
         });
     };
     return (

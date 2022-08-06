@@ -61,6 +61,7 @@ validate: xác thực
 - Cài đặt npm install -S yup
  + username: yup.string().min(3).max(255).required(), : ít nhân 3 ký tự và nhiều nhất 255 ký tự
 +  
+-
 
 
 

@@ -6,6 +6,12 @@ router.get('/', async (req, res) => {
     res.json(listOfPosts);
 });
 
+router.get('/byId/:id', async (req, res) => {
+    const id = req.params.id;
+    const post = await Posts.findByPk(id); // findByPk(id) Tìm duy nhất đối tượng chứa Id và lấy hết thông tin
+    res.json(post);
+});
+
 router.post('/', async (req, res) => {
     // tạo dữ liệu trong bảng
     const post = req.body;
