@@ -14,25 +14,21 @@ function Post() {
 
     useEffect(() => {
         axios.get(`http://localhost:3001/posts/byId/${id}`).then((response) => {
-            // console.log(response.data);
             setPostObject(response.data);
         });
 
         axios.get(`http://localhost:3001/comments/${id}`).then((response) => {
-            // console.log(response.data);
             setComments(response.data);
         });
     }, []);
     const handleChange = (e) => {
         setFormCommentData((p) => {
-            console.log('+++++++', { ...p, [e.target.name]: e.target.value });
+            // console.log('+++++++', { ...p, [e.target.name]: e.target.value });
             return { ...p, [e.target.name]: e.target.value, PostId: id };
         });
     };
     const addComment = (formCommentData) => {
-        // console.log('xin chào mọi người', formCommentData);
         axios.post(`http://localhost:3001/comments`, formCommentData).then((response) => {
-            // console.log('xin chào mọi người');
             const commentToAdd = formCommentData;
             setComments([...comments, commentToAdd]);
             console.log('========', comments);

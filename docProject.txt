@@ -66,9 +66,18 @@ Sử dụng compnonet Post.js : sử dụng  useParams trong react-router-dom
 
 // useHistory trong  'react-router-dom' cho phép chúng tôi điều hướng và chuyển hướng đến các vị trị khác trong ứng dụng , muốn thay đổi tuyến đường hay hướng chỉ cần history.push("Link") trong đó let history = useHistory()
 ++++ trong phiên bản mới của React thì dùng import {  useNavigate } from 'react-router-dom'thay thế cho useHistory ==> let navigate = useNavigate(); và cú pháp   navigate(`/post/${value.id}`) sẽ di đến trag cần tìm
- 
 
 
++++ 
+
+ // vÌ mỗi bài đăng có thể có nhiều bình luận
+    Posts.associate = (models) => {  
+        Posts.hasMany(models.Comments, {
+            onDelete: 'cascade', // Tự động xóa bài đăng no sẽ tự động xóa tất cả các nhận xét
+        });
+    };
+
+// Cách tạo form để gửi lên hệ thống qua database và xử lý phần bình luận 
 
 
 
