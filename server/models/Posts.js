@@ -13,5 +13,12 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
     });
+
+    // vÌ mỗi bài đăng có thể có nhiều bình luận
+    Posts.associate = (models) => {
+        Posts.hasMany(models.Comments, {
+            onDelete: 'cascade', // Tự động xóa bài đăng no sẽ tự động xóa tất cả các nhận xét
+        });
+    };
     return Posts;
 };
