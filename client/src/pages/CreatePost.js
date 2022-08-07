@@ -20,12 +20,20 @@ function CreatePost() {
     });
     const onSubmit = (data) => {
         // console.log(data);
-        axios.post('http://localhost:3001/posts', data).then((response) => {
-            // console.log(response.data);
-            // setListOfPosts(response.data);
-            // console.log('click thanh coong');
-            navigate(`/`);
-        });
+        axios
+            .post('http://localhost:3001/posts', data, {
+                headers: {
+                    accessToken: sessionStorage.getItem('accessToken'),
+                },
+            })
+            .then((response) => {
+                if (response.data.error) {
+                    alert('Bạn chưa đăng nhập ', response.data.error);
+                    navigate(`/login`);
+                } else {
+                    navigate(`/`);
+                }
+            });
     };
     return (
         <div className="createPostPage">

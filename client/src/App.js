@@ -18,11 +18,11 @@ function App() {
                 </div>
 
                 <Routes>
+                    <Route path="/login" exact element={<Login />} />
                     <Route path="/" exact element={<Home />} />
                     <Route path="/createpost" exact element={<CreatePost />} />
                     <Route path="/post/:id" exact element={<Post />} />
                     <Route path="/registration" exact element={<Registration />} />
-                    <Route path="/login" exact element={<Login />} />
                 </Routes>
             </Router>
         </div>

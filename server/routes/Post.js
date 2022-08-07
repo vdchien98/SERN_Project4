@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { Posts } = require('../models');
+const { validateToken } = require('../middlewares/AuthMiddlewares');
 router.get('/', async (req, res) => {
     const listOfPosts = await Posts.findAll();
     res.json(listOfPosts);
@@ -12,7 +13,7 @@ router.get('/byId/:id', async (req, res) => {
     res.json(post);
 });
 
-router.post('/', async (req, res) => {
+router.post('/', validateToken, async (req, res) => {
     // tạo dữ liệu trong bảng
     const post = req.body;
     await Posts.create(post);

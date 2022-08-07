@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const { Users } = require('../models');
 const bcrypt = require('bcryptjs');
+const { sign } = require('jsonwebtoken');
+// var token = jwt.sign({ foo: 'bar' }, 'shhhhh');
 router.post('/', (req, res) => {
     const { username, password } = req.body;
     bcrypt.genSalt(10, function (err, salt) {
@@ -26,7 +28,14 @@ router.post('/login', async (req, res) => {
         if (!match) {
             res.json({ error: 'Wrong username and  password' });
         }
-        res.json('You loged in !!!');
+        const accessToken = sign(
+            {
+                username: user.username,
+                id: user.id,
+            },
+            'chien'
+        );
+        res.json(accessToken);
     });
 });
 module.exports = router;

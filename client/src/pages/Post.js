@@ -28,11 +28,21 @@ function Post() {
         });
     };
     const addComment = (formCommentData) => {
-        axios.post(`http://localhost:3001/comments`, formCommentData).then((response) => {
-            const commentToAdd = formCommentData;
-            setComments([...comments, commentToAdd]);
-            console.log('========', comments);
-        });
+        axios
+            .post(`http://localhost:3001/comments`, formCommentData, {
+                headers: {
+                    accessToken: sessionStorage.getItem('accessToken'),
+                },
+            })
+            .then((response) => {
+                if (response.data.error) {
+                    console.log(response.data.error);
+                } else {
+                    const commentToAdd = formCommentData;
+                    setComments([...comments, commentToAdd]);
+                    console.log('========', comments);
+                }
+            });
     };
     return (
         <div className="postPage">
