@@ -3,6 +3,8 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import axios from 'axios';
 import '../pages/Registration.scss';
+import { useNavigate } from 'react-router-dom';
+
 function Registration() {
     const initialValues = {
         username: '',
@@ -12,10 +14,12 @@ function Registration() {
         username: yup.string().min(3).max(255).required('Bạn phải nhập tên đăng ký'),
         password: yup.string().min(4).max(255).required('Bạn phải nhập mật khẩu '),
     });
+    const navigate = useNavigate();
     const onSubmit = (data) => {
         // console.log(data);
         axios.post('http://localhost:3001/auth', data).then((response) => {
             console.log(data);
+            navigate('/login');
         });
     };
     return (
