@@ -41,8 +41,46 @@
     }
     .rightSide {
         flex: 50%;
-        // height: calc(100vh - 70px);
+        height: calc(100vh - 70px);
         display: grid;
         place-items: center;
+        display: flex;
+        flex-direction: column;
+        .addCommentContainer {
+            flex: 20%;
+            width: 100%;
+            display: grid;
+            place-items: center;
+            margin-top: 25px;
+            input,
+            button {
+                width: 200px;
+                height: 50px;
+                border-radius: 8px;
+                border: none;
+            }
+            input {
+                border: 2px solid dodgerblue;
+            }
+            button {
+                background-color: dodgerblue;
+                color: white;
+            }
+        }
+        .listOfComments {
+            flex: 80%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .comment {
+                width: 70%;
+                height: auto;
+                padding: 30px;
+                border: 1px solid lightgray;
+                border-radius: 5px;
+                margin-top: 20px;
+            }
+        }
     }
 }
