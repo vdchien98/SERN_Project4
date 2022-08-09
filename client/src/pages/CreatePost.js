@@ -23,7 +23,7 @@ function CreatePost() {
         axios
             .post('http://localhost:3001/posts', data, {
                 headers: {
-                    accessToken: sessionStorage.getItem('accessToken'),
+                    accessToken: localStorage.getItem('accessToken'),
                 },
             })
             .then((response) => {

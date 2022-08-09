@@ -23,7 +23,6 @@ function Post() {
     }, []);
     const handleChange = (e) => {
         setFormCommentData((p) => {
-            // console.log('+++++++', { ...p, [e.target.name]: e.target.value });
             return { ...p, [e.target.name]: e.target.value, PostId: id };
         });
     };
@@ -31,14 +30,14 @@ function Post() {
         axios
             .post(`http://localhost:3001/comments`, formCommentData, {
                 headers: {
-                    accessToken: sessionStorage.getItem('accessToken'),
+                    accessToken: localStorage.getItem('accessToken'),
                 },
             })
             .then((response) => {
                 if (response.data.error) {
                     console.log(response.data.error);
                 } else {
-                    const commentToAdd = formCommentData;
+                    const commentToAdd = { ...formCommentData, username: response.data.username };
                     setComments([...comments, commentToAdd]);
                     console.log('========', comments);
                 }
@@ -76,6 +75,7 @@ function Post() {
                         return (
                             <div key={key} className="comment">
                                 {comment.commentBody}
+                                <label>User name: {comment.username}</label>
                             </div>
                         );
                     })}

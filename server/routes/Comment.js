@@ -15,6 +15,9 @@ router.get('/:postId', async (req, res) => {
 router.post('/', validateToken, async (req, res) => {
     // tạo dữ liệu trong bảng
     const comment = req.body;
+    const username = req.user.username;
+    comment.username = username; // Object của comment thêm 1 key là username và có giá trị là username (req.user.username)
+    // console.log('++++++++++++++************', comment);
     await Comments.create(comment);
     res.json(comment);
 });

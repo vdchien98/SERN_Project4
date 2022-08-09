@@ -1,30 +1,31 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import axios from 'axios';
 import './Login.scss';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../helpers/AuthContext';
 function Login() {
     const form = {
         username: '',
         password: '',
     };
     const [formData, setFormData] = useState({ ...form });
+    const { setAuthState } = useContext(AuthContext);
     const navigate = useNavigate();
     const handleChange = (e) => {
         setFormData((p) => {
-            // console.log('+++++++', { ...p, [e.target.name]: e.target.value });
             return { ...p, [e.target.name]: e.target.value };
         });
     };
     const login = (data) => {
-        console.log(data);
         axios.post(`http://localhost:3001/auth/login`, data).then((response) => {
-            // console.log('========', response.data);
             if (response.data.error) {
                 alert(response.data.error);
             } else {
-                sessionStorage.setItem('accessToken', response.data);
-                navigate("/")
+                console.log('***-----', response.data);
+                localStorage.setItem('accessToken', response.data.token);
+                setAuthState({ username: response.data.username, id: response.data.id, status: true });
+                navigate('/');
             }
         });
     };
