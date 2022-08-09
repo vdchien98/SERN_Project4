@@ -1,7 +1,9 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { AuthContext } from '../helpers/AuthContext';
+
 import './Post.scss';
 function Post() {
     let { id } = useParams(); // lấy cái id trong đường dẫn <Route path="/post/:id" exact element={<Post />} /> bên App
@@ -11,6 +13,7 @@ function Post() {
         commentBody: '',
     };
     const [formCommentData, setFormCommentData] = useState({ ...formComment });
+    const { authState } = useContext(AuthContext);
 
     useEffect(() => {
         axios.get(`http://localhost:3001/posts/byId/${id}`).then((response) => {
@@ -37,12 +40,34 @@ function Post() {
                 if (response.data.error) {
                     console.log(response.data.error);
                 } else {
-                    const commentToAdd = { ...formCommentData, username: response.data.username };
-                    setComments([...comments, commentToAdd]);
-                    console.log('========', comments);
+                    debugger;
+                    console.log('====++++++', response.data);
+                    setComments([...comments, response.data]);
+                    setFormCommentData({});
+                    console.log('******------***---/////-', comments);
                 }
             });
     };
+
+    const deleteComment = (id) => {
+        axios
+            .delete(`http://localhost:3001/comments/${id}`, {
+                headers: {
+                    accessToken: localStorage.getItem('accessToken'),
+                },
+            })
+            .then((response) => {
+                console.log('đã xóa ', response);
+                setComments(
+                    comments.filter((val) => {
+                        return val.id !== id;
+                    })
+                );
+                console.log('------***---/////-', comments);
+            });
+    };
+
+    console.log('-------', comments);
     return (
         <div className="postPage">
             <div className="leftSide">
@@ -76,6 +101,18 @@ function Post() {
                             <div key={key} className="comment">
                                 {comment.commentBody}
                                 <label>User name: {comment.username}</label>
+                                {authState.username === comment.username ? (
+                                    <button
+                                        onClick={() => {
+                                            deleteComment(comment.id);
+                                        }}
+                                        style={{ marginLeft: '15px' }}
+                                    >
+                                        Xóa bình luận{' '}
+                                    </button>
+                                ) : (
+                                    '0'
+                                )}
                             </div>
                         );
                     })}
