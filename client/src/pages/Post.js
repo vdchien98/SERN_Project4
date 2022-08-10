@@ -40,11 +40,8 @@ function Post() {
                 if (response.data.error) {
                     console.log(response.data.error);
                 } else {
-                    debugger;
-                    console.log('====++++++', response.data);
                     setComments([...comments, response.data]);
                     setFormCommentData({});
-                    console.log('******------***---/////-', comments);
                 }
             });
     };
@@ -101,7 +98,7 @@ function Post() {
                             <div key={key} className="comment">
                                 {comment.commentBody}
                                 <label>User name: {comment.username}</label>
-                                {authState.username === comment.username ? (
+                                {authState.username === comment.username && (
                                     <button
                                         onClick={() => {
                                             deleteComment(comment.id);
@@ -110,8 +107,6 @@ function Post() {
                                     >
                                         Xóa bình luận{' '}
                                     </button>
-                                ) : (
-                                    '0'
                                 )}
                             </div>
                         );
