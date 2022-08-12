@@ -62,7 +62,7 @@ function App() {
                         <Route path="/createpost" exact element={<CreatePost />} />
                         <Route path="/post/:id" exact element={<Post />} />
                         <Route path="/registration" exact element={<Registration />} />
-                        <Route path="*" exact component={PageNotFound} />
+                        <Route path="*" exact element={<PageNotFound />} />
                     </Routes>
                 </Router>
             </AuthContext.Provider>
