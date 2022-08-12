@@ -19,6 +19,9 @@ module.exports = (sequelize, DataTypes) => {
         Posts.hasMany(models.Comments, {
             onDelete: 'cascade', // Tự động xóa bài đăng no sẽ tự động xóa tất cả các nhận xét
         });
+        Posts.hasMany(models.Likes, {
+            onDelete: 'cascade',
+        });
     };
     return Posts;
 };
