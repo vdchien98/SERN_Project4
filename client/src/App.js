@@ -5,6 +5,8 @@ import CreatePost from '../src/pages/CreatePost';
 import Post from '../src/pages/Post';
 import Registration from '../src/pages/Registration';
 import Login from '../src/pages/Login';
+import PageNotFound from '../src/pages/PageNotFound';
+
 import { AuthContext } from './helpers/AuthContext';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -60,6 +62,7 @@ function App() {
                         <Route path="/createpost" exact element={<CreatePost />} />
                         <Route path="/post/:id" exact element={<Post />} />
                         <Route path="/registration" exact element={<Registration />} />
+                        <Route path="*" exact component={PageNotFound} />
                     </Routes>
                 </Router>
             </AuthContext.Provider>
